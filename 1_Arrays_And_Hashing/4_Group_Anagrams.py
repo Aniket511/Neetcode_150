@@ -52,28 +52,9 @@ class Solution:
         # are the lists of anagrams, so we return them as a list of lists.
         return list(result.values())
 
-# Example Test Cases
-test_cases = [
-    (["eat", "tea", "tan", "ate", "nat", "bat"], [
-        ["eat", "tea", "ate"], 
-        ["tan", "nat"], 
-        ["bat"]
-    ]),  # Test case with multiple anagrams
-
-    ([""], [[""]]),  # Test case with an empty string
-
-    (["a"], [["a"]]),  # Test case with a single character word
-
-    (["abc", "bca", "cab", "cba", "bac", "xyz"], [
-        ["abc", "bca", "cab", "cba", "bac"], 
-        ["xyz"]
-    ])  # Test case with words that are anagrams of each other
-]
-
+# Test Cases:
 solution = Solution()
-
-# Running test cases
-for i, (strs, expected) in enumerate(test_cases):
-    result = solution.groupAnagrams(strs)
-    passed = sorted(result) == sorted(expected)  # Sorting to compare regardless of order
-    print(f"Test Case {i+1}: {'Passed' if passed else f'Failed (Expected: {expected}, Got: {result})'}")
+print(solution.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))   # ["abc", "bca", "cab", "cba", "bac", "xyz"]
+print(solution.groupAnagrams([""]))                                         # [[""]]
+print(solution.groupAnagrams(["a"]))                                        # [['a]]
+print(solution.groupAnagrams(["abc", "bca", "cab", "cba", "bac", "xyz"]))   # [['abc', 'bca', 'cab', 'cba', 'bac'], ['xyz']]

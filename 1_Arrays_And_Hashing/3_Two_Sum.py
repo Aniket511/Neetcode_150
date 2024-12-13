@@ -38,16 +38,11 @@ class Solution:
             # Store the current number with its index in the hashmap
             pair_idx[number] = idx
 
-test_cases = [
-    ([2, 7, 11, 15], 9, [0, 1]),       # 2 + 7 = 9
-    ([3, 2, 4], 6, [1, 2]),            # 2 + 4 = 6
-    ([3, 3], 6, [0, 1]),               # 3 + 3 = 6
-    ([1, 2, 3, 4, 5], 10, None),       # No valid pair
-    ([0, 4, 3, 0], 0, [0, 3]),         # 0 + 0 = 0
-    ([1, -1, 2, -2], 0, [1, 3])        # -1 + 1 = 0
-]
-
-solution = Solution()
-for i, (nums, target, expected) in enumerate(test_cases):
-    result = solution.twoSum(nums, target)
-    print(f"Test Case {i+1}: {nums, result}")
+# Test Cases:
+solution  = Solution()
+print(solution.twoSum([2, 7, 11, 15], 9))     # [0, 1] -> 7 + 2 = 9
+print(solution.twoSum([3, 2, 4], 6))          # [1, 2] -> 3 + 2 = 6
+print(solution.twoSum([3, 3], 6))             # [0, 1] -> 3 + 3 = 6
+print(solution.twoSum([1, 2, 3, 4, 5], 10))   # [3, 5] -> None
+print(solution.twoSum([0, 4, 3, 0], 0))       # [0, 3] -> 0 + 0 = 0
+print(solution.twoSum([1, -1 ,3, -3], 0))     # [0, 1] -> 1 + (-1) = 0

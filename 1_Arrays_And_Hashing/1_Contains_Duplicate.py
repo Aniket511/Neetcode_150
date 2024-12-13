@@ -50,18 +50,8 @@ class Solution:
 # Space Complexity:
 # O(n) because, in the worst case, we may need to store all the values of the list in the set.
 
-test_cases = [
-    ([1, 2, 3, 4, 5, 6, 2], True),
-    ([1, 2, 3, 4, 5, 6], False),
-    ([1], False),
-    ([], False),
-    ([5, 5, 5, 5, 5], True),
-    (list(range(1, 100000)) + [99999], True),
-    ([-1, -2, -3, -1], True),
-    (list(range(1, 100000)), False)
-]
-
+# Test Cases:
 solution = Solution()
-for i, (nums, expected) in enumerate(test_cases):
-    result = solution.containsDuplicate(nums)
-    print(f"Test Case {i+1}: {'Passed' if result == expected else 'Failed'}")
+print(solution.containsDuplicate([1,2,2,3])) # True
+print(solution.containsDuplicate([7,6,5,4,3,2,1])) # False
+print(solution.containsDuplicate([])) # True

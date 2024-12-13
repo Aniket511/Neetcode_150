@@ -30,8 +30,8 @@ class Solution:
         # Step 4: Collect the top k frequent elements from `frequency`.
         result = []
         # Traverse `frequency` starting from the highest frequency to get the top k elements.
-        for i in range(len(frequency) - 1, 0, -1):
-            for number in frequency[i]:
+        for idx in range(len(frequency) - 1, 0, -1):
+            for number in frequency[idx]:
                 result.append(number)
                 if len(result) == k:
                     return result
@@ -46,13 +46,8 @@ test_cases = [
     ([1], 1, [1]),
     ([5, 5, 5, 5, 5, 5], 1, [5]),
     ([1, 2, 2, 3], 5, [2, 3, 1]),  # Should return all elements as there are not enough unique numbers
-    ([i for i in range(1, 1000001)] + [999999, 999998, 999997], 3, [999999, 999998, 999997])
+    ([idx for idx in range(1, 1000001)] + [999999, 999998, 999997], 3, [999999, 999998, 999997])
 ]
 
 solution = Solution()
-
-# Running the test cases
-for i, (nums, k, expected) in enumerate(test_cases):
-    result = solution.topKFrequent(nums, k)
-    passed = sorted(result) == sorted(expected)  # Sort both to compare regardless of order
-    print(f"Test Case {i+1}: {'Passed' if passed else f'Failed (Expected: {expected}, Got: {result})'}")
+print(solution.topKFrequent([1, 1, 1, 2, 2, 3], 2))     

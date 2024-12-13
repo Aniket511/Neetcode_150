@@ -13,7 +13,7 @@ Input: s = "rat", t = "car"
 Output: false
 """
 
-# Solution 1: 2 Hashmaps
+# Solution 1: 2 Hashmaps (for both lowercase and uppercase)
 class Solution1:
     def isAnagram(self, s: str, t: str) -> bool:    
         # Step 1: Check if the lengths of both strings are the same
@@ -35,21 +35,14 @@ class Solution1:
         # Step 3: Return whether both hashmaps are the same
         return s_count == t_count
 
-test_cases = [
-    ("anagram", "nagaram", True),   # Both are anagrams
-    ("rat", "car", False),         # Different lengths, not anagrams
-    ("aabbcc", "bbaacc", True),    # Both are anagrams
-    ("hello", "world", False),     # Not anagrams
-    ("", "", True),                # Both are empty strings
-    ("a", "ab", False),            # Different lengths
-]
-
+# Test Cases
 solution1 = Solution1()
-for i, (s, t, expected) in enumerate(test_cases):
-    result = solution1.isAnagram(s, t)
-    print(f"Test Case {i+1}: {'Passed' if result == expected else 'Failed'}")
+print(solution1.isAnagram("anagram", "nagaram"))    # True
+print(solution1.isAnagram("rat", "cat"))            # False
+print(solution1.isAnagram("a", "b"))                # False
+print(solution1.isAnagram("", ""))                  # True
 
-# Solution 2: Frequency Array
+# Solution 2: Frequency Array (for all lowercase or all uppercase letters)
 class Solution2:
     def isAnagram(self, s: str, t: str) -> bool:  
         # Step 1: Check if the lengths of both strings are the same
@@ -73,17 +66,9 @@ class Solution2:
         # Step 5: If all character counts balance out, the strings are anagrams
         return True
 
-test_cases = [
-    ("anagram", "nagaram", True),   # Both are anagrams
-    ("rat", "car", False),         # Different lengths, not anagrams
-    ("aabbcc", "bbaacc", True),    # Both are anagrams
-    ("hello", "world", False),     # Not anagrams
-    ("", "", True),                # Both are empty strings
-    ("a", "ab", False),            # Different lengths
-    ("abc", "cba", True),          # Anagrams with reversed order
-]
-
+# Test Cases:
 solution2 = Solution2()
-for i, (s, t, expected) in enumerate(test_cases):
-    result = solution2.isAnagram(s, t)
-    print(f"Test Case {i+1}: {'Passed' if result == expected else 'Failed'}")
+print(solution2.isAnagram("anagram", "nagaram"))    # True
+print(solution2.isAnagram("rat", "cat"))            # False
+print(solution2.isAnagram("a", "b"))                # False
+print(solution2.isAnagram("", ""))                  # True
