@@ -1,5 +1,5 @@
 """
-7. Reverse Integer
+Reverse Integer
 
 **Medium**
 

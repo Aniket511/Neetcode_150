@@ -1,5 +1,5 @@
 """
-136. Single Number
+Single Number
 
 Easy
 
