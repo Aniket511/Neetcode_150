@@ -1,4 +1,6 @@
 """
+Microsoft 
+
 Contains Duplicate
 
 Easy
@@ -51,7 +53,16 @@ class Solution:
 # O(n) because, in the worst case, we may need to store all the values of the list in the set.
 
 # Test Cases:
+test_cases = [
+    ([1, 2, 3, 4], False),
+    ([4, 3, 2, 1, 2], True),
+    ([_ for _ in range(-100,101)] + [-23], True),
+    ([2], False),
+    ([2, 2, 2, 2, 2], True),
+    ([1,1,1,3,3,4,3,2,4,2], True)
+]
+
 solution = Solution()
-print(solution.containsDuplicate([1,2,2,3])) # True
-print(solution.containsDuplicate([7,6,5,4,3,2,1])) # False
-print(solution.containsDuplicate([])) # True
+for i, (nums, expected) in enumerate(test_cases):
+    result = solution.containsDuplicate(nums)
+    print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")

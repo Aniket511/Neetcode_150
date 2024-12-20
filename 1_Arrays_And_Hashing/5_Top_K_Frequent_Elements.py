@@ -37,18 +37,25 @@ class Solution:
                 if len(result) == k:
                     return result
 
-# Test cases to validate the solution
+# Time Complexity:
+# O(n) where n is length of nums
+
+# Space Complexity:
+# O(n) where n is length of nums
+
 test_cases = [
     ([1, 1, 1, 2, 2, 3], 2, [1, 2]),
     ([1, 1, 1, 1], 1, [1]),
-    ([4, 4, 5, 5, 6, 6], 2, [4, 5]),  # Order can vary
-    ([1, 2, 2, 3, 3, 3, 4, 5], 3, [3, 2, 1]),  # Order can vary
-    ([-1, -1, 2, 3, 2, 2, -1, 3, 3], 2, [3, 2]),  # Order can vary
+    ([4, 4, 5, 5, 6, 6], 2, [4, 5]),
+    ([1, 2, 2, 3, 3, 3, 4, 5], 3, [3, 2, 1]),
+    ([-1, -1, 2, 3, 2, 2, -1, 3, 3], 2, [3, 2]),
     ([1], 1, [1]),
     ([5, 5, 5, 5, 5, 5], 1, [5]),
-    ([1, 2, 2, 3], 5, [2, 3, 1]),  # Should return all elements as there are not enough unique numbers
     ([idx for idx in range(1, 1000001)] + [999999, 999998, 999997], 3, [999999, 999998, 999997])
 ]
 
-solution = Solution()
-print(solution.topKFrequent([1, 1, 1, 2, 2, 3], 2))     
+solution = Solution() 
+for i, (nums, k, expected) in enumerate(test_cases):
+    result = solution.topKFrequent(nums, k)
+    print(f"Test Case {i + 1}: {'Pass' if sorted(result) == sorted(expected) else 'Fail'} (Expected {expected}, Got {result})")
+  

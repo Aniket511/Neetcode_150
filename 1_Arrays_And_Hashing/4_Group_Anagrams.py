@@ -1,4 +1,6 @@
 """
+Amazon 
+
 Group Anagrams
 
 Medium
@@ -52,9 +54,37 @@ class Solution:
         # are the lists of anagrams, so we return them as a list of lists.
         return list(result.values())
 
+# Time Complexity:
+# O(m + n) where m is the length of longest string and n is the number of string
+
+# Space Complexity:
+# O(n) where n is the number of strings
+
 # Test Cases:
-solution = Solution()
-print(solution.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))   # ["abc", "bca", "cab", "cba", "bac", "xyz"]
-print(solution.groupAnagrams([""]))                                         # [[""]]
-print(solution.groupAnagrams(["a"]))                                        # [['a]]
-print(solution.groupAnagrams(["abc", "bca", "cab", "cba", "bac", "xyz"]))   # [['abc', 'bca', 'cab', 'cba', 'bac'], ['xyz']]
+test_cases = [
+    # Test case with mixed anagrams and non-anagrams
+    (["eat", "tea", "tan", "ate", "nat", "bat"], [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]),
+    # Test case with an empty string
+    ([""], [[""]]),
+    # Test case with a single character string
+    (["a"], [['a']]),
+    # Test case with all words being anagrams
+    (["abc", "bca", "cab", "cba", "bac"], [['abc', 'bca', 'cab', 'cba', 'bac']]),
+    # Test case with no anagrams, all words are unique
+    (["abc", "def", "ghi", "jkl"], [['abc'], ['def'], ['ghi'], ['jkl']]),
+    # Test case with different lengths of words, but no anagrams
+    (["abcd", "bcda", "cdab", "dcba", "xyz", "yzx"], [['abcd', 'bcda', 'cdab', 'dcba'], ['xyz', 'yzx']]),
+    # Test case with multiple empty strings and some valid anagrams
+    (["", "", "bat", "tab", "pat"], [['', ''], ['bat', 'tab'], ['pat']]),
+    # Test case with anagrams mixed with distinct words
+    (["rose", "ores", "hello", "ohlle", "bat", "tab"], [['rose', 'ores'], ['hello', 'ohlle'], ['bat', 'tab']]),
+    # Test case with long strings that are anagrams
+    (["longword", "wordlong", "gnolword", "wordnolg"], [['longword', 'wordlong', 'gnolword', 'wordnolg']]),
+    # Test case with a mix of single letter and multi-letter words
+    (["a", "b", "c", "ab", "ba"], [['a'], ['b'], ['c'], ['ab', 'ba']])
+]
+
+solution = Solution()  # Assuming Solution class with groupAnagrams method
+for i, (strs, expected) in enumerate(test_cases):
+    result = solution.groupAnagrams(strs)
+    print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")

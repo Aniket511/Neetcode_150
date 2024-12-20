@@ -1,10 +1,12 @@
 """
+Amazon 
+
 Single Number
 
 Easy
 
 Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
-You must implement a solution with a linear runtime complexity and use only constant extra space.
+You must implement a solution with a linear runtime 'O(n)' complexity and use only constant extra space 'O(1)'.
 
 Example 1:
 Input: nums = [2,2,1]
@@ -30,7 +32,7 @@ class Solution:
         for number in nums:
             # Step 3: XOR the current number with 'result'
             # The XOR operation cancels out numbers that appear twice.
-            result = number ^ result
+            result ^= number 
 
         # Step 4: Return the result
         # After completing the loop, 'result' will contain the unique number.
@@ -38,29 +40,30 @@ class Solution:
 
 # Time Complexity:
 # O(n), where n is the number of elements in the list `nums`.
-# We iterate through the list once, and each XOR operation takes constant time.
+# We iterate through the list once, and each XOR operation takes constant O(1) time.
 
 # Space Complexity:
 # O(1), as we use only a constant amount of extra space (the variable `result`).
 
-# Test cases to validate the solution
-# Test case 1: General case with one unique number
-nums1 = [4, 1, 2, 1, 2]
+# Test Cases:
+test_cases = [
+    ([1, 3, 7, 15, 31, 63, 63, 127, 127, 3, 1, 7, 15], 31),
+    ([4, 1, 2, 1, 2], 4),
+    ([-1, -1, -2], -2),
+    ([1, 2, 3, 2, 3, 4, 4], 1),
+    ([100], 100),
+    ([_ for _ in range(-10000, 0)], 0)
+]
+
 solution = Solution()
-print(solution.singleNumber(nums1))  # Expected output: 4
+for i, (nums, expected) in enumerate(test_cases):
+    result = solution.singleNumber(nums)
+    print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")
 
-# Test case 2: Case where the single number is negative
-nums2 = [-1, 2, 2, 3, 3]
-print(solution.singleNumber(nums2))  # Expected output: -1
-
-# Test case 3: Case with only one element in the list
-nums3 = [5]
-print(solution.singleNumber(nums3))  # Expected output: 5
-
-# Test case 4: Case with all numbers repeated except one
-nums4 = [7, 8, 8, 9, 9]
-print(solution.singleNumber(nums4))  # Expected output: 7
-
-# Test case 5: Case with all numbers repeated except one, with a larger list
-nums5 = [10, 20, 10, 30, 30, 40, 40]
-print(solution.singleNumber(nums5))  # Expected output: 20
+# Output
+# Test Case 1: Pass (Expected 31, Got 31)
+# Test Case 2: Pass (Expected 4, Got 4)
+# Test Case 3: Pass (Expected -2, Got -2)
+# Test Case 4: Pass (Expected 1, Got 1)
+# Test Case 5: Pass (Expected 100, Got 100)
+# Test Case 6: Pass (Expected 0, Got 0)

@@ -1,11 +1,12 @@
 """
+Amazon
+
 Number of 1 Bits
 
 Easy
 
-Given a positive integer n, 
-write a function that returns the number of set bits
-in its binary representation (also known as the Hamming weight).
+Given a positive integer n, write a function that returns the number of set bits in its binary representation (also known as the Hamming weight).
+(Return the number of 1 bits in its binary representation.)
 
 Example 1:
 Input: n = 11
@@ -52,37 +53,8 @@ class Solution1:
 # Space Complexity:
 # O(1), as we only use a constant amount of space (the variable `result`).
 
-# Solution 2: Bitmask II
+# Solution 2: Bitmask (Optimal)
 class Solution2:
-    def hammingWeight(self, n: int) -> int:
-        # Step 1: Initialize the result variable to 0
-        # This will store the number of 1 bits in the binary representation of `n`.
-        result = 0
-
-        # Step 2: Loop until `n` becomes 0
-        # We continue checking each bit of `n` from the least significant bit (rightmost) to the most significant bit.
-        while n:
-            # Step 3: If the least significant bit is 1, increment the result counter
-            # We use the bitwise AND operation with 1 (`n & 1`) to check if the least significant bit is 1.
-            # If it is, increment `result` by 1.
-            result += 1 if n & 1 else 0
-
-            # Step 4: Right shift `n` to check the next bit
-            # We perform a right shift on `n` (`n >>= 1`) to move to the next bit.
-            n >>= 1
-
-        # Step 5: Return the total number of 1 bits
-        return result
-
-# Time Complexity:
-# O(k), where k is the number of bits in the binary representation of `n`.
-# In the worst case, the loop runs for all the bits of `n`. If `n` is a 32-bit integer, the loop will run at most 32 times.
-
-# Space Complexity:
-# O(1), as we only use a constant amount of space (the variable `result`).
-
-# Solution 3: Bitmask(Optimal)
-class Solution3:
     def hammingWeight(self, n: int) -> int:
         # Step 1: Initialize the result variable to 0
         # This will store the number of 1 bits in the binary representation of `n`.
@@ -104,42 +76,27 @@ class Solution3:
         return result
 
 # Time Complexity:
-# O(k), where k is the number of 1 bits in the binary representation of `n`.
-# Each iteration of the loop clears one bit, so the loop runs for the number of 1 bits in `n`.
+# O(1), because the loop always runs 32 times, regardless of the size of `n`.
+# Checking each bit of the 32-bit integer takes constant time.
 
 # Space Complexity:
 # O(1), as we only use a constant amount of space (the variable `result`).
 
 # Test cases
-n1 = 0b00000000000000000000000000001011  # Binary: 1011, 3 ones
-n2 = 0b00000000000000000000000000000000  # Binary: 0, no ones
-n3 = 0b11111111111111111111111111111111  # Binary: all ones
-n4 = 0b10000000000000000000000000000000  # Binary: single 1 bit
-n5 = 0b00000000000000000000000010000000  # Binary: single 1 bit
+test_cases = [
+    (0b00000000000000000000000000001011, 3),    # Binary: 1011, 3 ones
+    (0b00000000000000000000000000000000, 0),    # Binary: 0, no ones
+    (0b11111111111111111111111111111111, 32),   # Binary: all ones
+    (0b10000000000000000000000000000000, 1),    # Binary: single 1 bit
+    (0b00000000000000000000000010000000, 1)     # Binary: single 1 bit
+]
 
-
-# Testing Solution 1
 solution1 = Solution1()
-print(solution1.hammingWeight(n1))  # Expected output: 3
-print(solution1.hammingWeight(n2))  # Expected output: 0
-print(solution1.hammingWeight(n3))  # Expected output: 32
-print(solution1.hammingWeight(n4))  # Expected output: 1
-print(solution1.hammingWeight(n5))  # Expected output: 1
+for i, (nums, expected) in enumerate(test_cases):
+    result = solution1.hammingWeight(nums)
+    print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")
 
-
-# Testing Solution 2
 solution2 = Solution2()
-print(solution2.hammingWeight(n1))  # Expected output: 3
-print(solution2.hammingWeight(n2))  # Expected output: 0
-print(solution2.hammingWeight(n3))  # Expected output: 32
-print(solution2.hammingWeight(n4))  # Expected output: 1
-print(solution2.hammingWeight(n5))  # Expected output: 1
-
-
-# Testing Solution 3
-solution3 = Solution3()
-print(solution3.hammingWeight(n1))  # Expected output: 3
-print(solution3.hammingWeight(n2))  # Expected output: 0
-print(solution3.hammingWeight(n3))  # Expected output: 32
-print(solution3.hammingWeight(n4))  # Expected output: 1
-print(solution3.hammingWeight(n5))  # Expected output: 1
+for i, (nums, expected) in enumerate(test_cases):
+    result = solution2.hammingWeight(nums)
+    print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")

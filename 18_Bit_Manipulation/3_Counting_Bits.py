@@ -1,5 +1,7 @@
 """
-338. Counting Bits
+Amazon
+
+Counting Bits
 
 Easy
 
@@ -26,3 +28,23 @@ Explanation:
 5 --> 101
 """
 
+# Solution 1: Bit Manipulation (Optimal)
+class Solution:
+    def countBits(self, n: int) -> list[int]:
+        dp = [0] * (n + 1)
+        for i in range(n + 1):
+            dp[i] = dp[i >> 1] + (i & 1)
+        return dp
+
+# Test Cases:
+test_cases = [
+    (4, [0, 1, 1, 2, 1]),
+    (2, [0, 1, 1]),
+    (5, [0, 1, 1, 2, 1, 2]),
+    (2, [0, 1, 1])
+]
+
+solution = Solution()
+for i, (nums, expected) in enumerate(test_cases):
+    result = solution.countBits(nums)
+    print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")
