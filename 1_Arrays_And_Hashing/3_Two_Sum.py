@@ -46,8 +46,9 @@ class Solution:
 
 # Test Cases:
 test_cases = [
-    ([3, 4, 5, 6], 7),  # The correct answer for this would be indices [0, 2] as 3 + 4 = 7
-    ([1, 2, 3, 4], 5),  # The correct answer for this would be indices [0, 3] as 1 + 4 = 5
+    ([3, 4, 5, 6], 7),      # The correct answer for this would be indices [0, 2] as 3 + 4 = 7
+    ([1, 2, 3, 4], 5),      # The correct answer for this would be indices [0, 3] as 1 + 4 = 5
+    ([-1, -2, -3, -1], -5), # The correct answer for this would be indices [1, 2] as -2 + -3 = -5
 ]
 
 solution = Solution()  # Corrected instantiation of Solution class

@@ -17,9 +17,8 @@ Output: [0,0,9,0,0]
 
 Follow up: Can you solve the problem in O(1) extra space complexity? (The output array does not count as extra space for space complexity analysis.)
 """
-
 class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
         output = [1] * len(nums)
         
         left = 1
@@ -32,4 +31,7 @@ class Solution:
             output[i] *= right
             right *= nums[i]
     
-        return output        
+        return output               
+
+solution = Solution()
+print(solution.productExceptSelf([2, 4, 8, 16, 32]))
