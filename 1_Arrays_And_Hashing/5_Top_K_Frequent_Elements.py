@@ -1,4 +1,6 @@
 """
+Amazon
+
 Top K Frequent Elements
 
 Medium
@@ -14,6 +16,7 @@ Input: nums = [1], k = 1
 Output: [1]
 """
 
+# Solution: Bucket Sort
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
         # Step 1: Initialize a list `frequency` where each index represents a frequency.
@@ -43,6 +46,7 @@ class Solution:
 # Space Complexity:
 # O(n) where n is length of nums
 
+# Test Cases
 test_cases = [
     ([1, 1, 1, 2, 2, 3], 2, [1, 2]),
     ([1, 1, 1, 1], 1, [1]),
@@ -57,5 +61,4 @@ test_cases = [
 solution = Solution() 
 for i, (nums, k, expected) in enumerate(test_cases):
     result = solution.topKFrequent(nums, k)
-    print(f"Test Case {i + 1}: {'Pass' if sorted(result) == sorted(expected) else 'Fail'} (Expected {expected}, Got {result})")
-  
+    print(f"Test Case {i + 1}: {'Pass' if sorted(result) == sorted(expected) else 'Fail'} (Expected {expected}, Got {result})") 

@@ -70,6 +70,12 @@ class Solution1:
 
         return True  # If no invalid conditions are found, the Sudoku board is valid.
 
+# Time Complexity:
+# O(81) -> O(1) because the board size is constant rows(9) ∗ columns(9) = 81
+
+# Space Complexity:
+# O(243) -> O(1) because rows(81) + columns(81) + boxes(81) = 243
+
 test_cases1 = [
     # Valid Sudoku board example
     (
@@ -190,7 +196,10 @@ class Solution2:
         return True
 
 # Time Complexity:
-# O(1) because the board is 9 x 9
+# O(81) -> O(1) because the board size is constant rows(9) ∗ columns(9) = 81
+
+# Space Complexity:
+# O(27) -> O(1) because because the space used is fixed regardless of the input rows(9) + columns(99) + boxes(9) = 27
 
 test_cases2 = [
     # Valid Sudoku board example
@@ -275,4 +284,3 @@ solution2 = Solution2()
 for i, (board, expected) in enumerate(test_cases2):
     result = solution2.isValidSudoku2(board)
     print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")
-

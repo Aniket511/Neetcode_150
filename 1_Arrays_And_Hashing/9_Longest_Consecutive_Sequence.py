@@ -1,4 +1,6 @@
 """
+Google
+
 Longest Consecutive Sequence
 
 Medium
@@ -45,8 +47,11 @@ class Solution1:
         # After iterating through all numbers in the list, return 'longest', which now holds the length of the longest consecutive sequence.
         return longest
 
-# Time Complexity: O(n), where n is the number of elements in the input array.
-# Space Complexity: O(n), where n is the number of elements in the input array.
+# Time Complexity: 
+# O(n) because worst case, for all the elements in 'nums' the longest sequence is 1
+
+# Space Complexity: 
+# O(n), where n is the number of elements in the input array
 
 # Test cases
 test_cases1 = [
@@ -97,6 +102,12 @@ class Solution2:
                 # Update the result with the maximum length found so far
                 result = max(result, hashmap[number])
         return result
+
+# Time Complexity: 
+# O(n) because worst case, for all the elements in 'nums' the longest sequence is 1
+
+# Space Complexity: 
+# O(n), where n is the number of elements in the input array
 
 # Test cases
 test_cases2 = [

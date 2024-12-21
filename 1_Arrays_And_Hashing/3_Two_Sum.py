@@ -20,6 +20,7 @@ Input: nums = [3,3], target = 6
 Output: [0,1]
 """
 
+# Solution : Hashmap
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
         # Step 1: Initialize a hashmap to store the indices of visited numbers

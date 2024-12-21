@@ -25,7 +25,7 @@ Input: nums = [1,1,1,3,3,4,3,2,4,2]
 Output: true
 """
 
-# Solution 1: Set
+# Solution: Set
 class Solution:
     def containsDuplicate(self, nums: list[int]) -> bool:
         # Step 1: Set Initialization
@@ -33,7 +33,6 @@ class Solution:
         # A set is chosen because it provides average O(1) time complexity for both insertions and membership checks, 
         # which makes it efficient for checking duplicates.
         number_set = set()
-
         # Step 2: Iterate through the list
         for number in nums:
             # Check for duplicate
@@ -41,8 +40,7 @@ class Solution:
                 # If a duplicate is found, return True
                 return True
             # Step 3: Add the number to the set if it is not already present
-            number_set.add(number)
-        
+            number_set.add(number)        
         # Step 4: Return False if all numbers in the list are distinct
         return False
 

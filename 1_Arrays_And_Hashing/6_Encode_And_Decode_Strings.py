@@ -18,59 +18,81 @@ Input: ["we","say",":","yes"]
 Output: ["we","say",":","yes"]
 """
 
+# Solution :Encoding and Decoding
 class Solution:
-    def encode(self, strs: List[str]) -> str:
-        # If the input list is empty, return an empty string
-        if not strs:
-            return ""
+    
+    def encode(self, strs: list[str]) -> str:
+        # Initialize an empty result string
+        encoded_string = ""
         
-        # `lengths` will store the length of each string in `strs`
-        lengths, encoded_str = [], ""
-        
-        # Step 1: Record the lengths of each string in `strs`
+        # Loop over each string in the input list
         for string in strs:
-            lengths.append(len(string))
+            # For each string, append the length of the string, followed by a '#' character, 
+            # then the string itself to the result string
+            encoded_string += str(len(string)) + "#" + string
         
-        # Step 2: Encode the lengths of strings
-        for length in lengths:
-            encoded_str += str(length)  # Add the length as a string
-            encoded_str += ','  # Use a comma as separator
-        
-        # Add a separator between lengths and actual strings
-        encoded_str += '#'
-        
-        # Step 3: Append the actual strings to `encoded_str`
-        for string in strs:
-            encoded_str += string  # Add the string to the result
-        
-        # Return the fully encoded string
-        return encoded_str
+        # Return the final encoded string
+        return encoded_string
 
-    def decode(self, encoded_str: str) -> List[str]:
-        # If the encoded string is empty, return an empty list
-        if not encoded_str:
-            return []
+    def decode(self, s: str) -> list[str]:
+        # Initialize an empty list to store the decoded strings
+        decoded_strings = []
         
-        # `lengths` will store the lengths of the strings to be decoded
-        lengths, decoded_strs, i = [], [], 0
+        # Initialize a pointer to track the current position in the encoded string
+        i = 0
         
-        # Step 1: Extract lengths from the encoded string
-        while encoded_str[i] != '#':
-            length_str = ""
-            # Extract the number (length of a string) from the encoded string
-            while encoded_str[i] != ',':
-                length_str += encoded_str[i]
-                i += 1
-            # Add the integer length to the `lengths` list
-            lengths.append(int(length_str))
-            i += 1  # Skip the comma
-        
-        # Step 2: Decode the actual strings based on the lengths
-        i += 1  # Skip the '#' separator
-        
-        for length in lengths:
-            decoded_strs.append(encoded_str[i:i + length])  # Extract the string of the given length
-            i += length  # Move the index forward by the length of the string
+        # Loop until we've processed the entire string
+        while i < len(s):
+            # Find the index of the '#' character, which separates the length of the string
+            # from the string itself
+            j = i
+            while s[j] != '#':
+                j += 1
+            
+            # Extract the length of the current string (before the '#' character)
+            length = int(s[i:j])
+            
+            # Move the pointer i past the '#' character
+            i = j + 1
+            
+            # The actual string starts at the position i and ends at i + length
+            current_string = s[i:i + length]
+            
+            # Append the decoded string to the list of decoded strings
+            decoded_strings.append(current_string)
+            
+            # Move the pointer i to the end of the current string
+            i = i + length
         
         # Return the list of decoded strings
-        return decoded_strs
+        return decoded_strings
+
+
+# Time Complexity:
+# O(n) where n is the sum of length of all strings for both encoding and decoding
+
+# Space Complexity:
+# O(1)  for encoding and decoding becasue we are not creating extra space
+
+test_cases = [
+    (["hello", "world"], "5#hello5#world", ["hello", "world"]),
+    (["a", "bc", "defg"], "1#a2#bc4#defg", ["a", "bc", "defg"]),
+    ([], "", []),  # Edge case: empty list
+    (["", "", ""], "0#0#0#", ["", "", ""]),  # list with empty strings
+    (["longstring", "anotherlongstring", "yetanother"], "10#longstring17#anotherlongstring10#yetanother", ["longstring", "anotherlongstring", "yetanother"]),
+    (["abc", "", "defg", "xyz"], "3#abc0#4#defg3#xyz", ["abc", "", "defg", "xyz"]),
+    (["!@#", "1234", "abcd$"], "3#!@#4#12345#abcd$", ['!@#', '1234', 'abcd$']),
+]
+
+solution = Solution()
+
+# Test encode and decode
+for i, (strs, expected_encoded, expected_decoded) in enumerate(test_cases):
+    # Test encoding
+    encoded = solution.encode(strs)
+    decode_result = solution.decode(encoded)
+    
+    print(f"Test Case {i + 1} - Encoding:")
+    print(f"  Expected Encoded: {expected_encoded}, Got: {encoded}")
+    print(f"  Expected Decoded: {expected_decoded}, Got: {decode_result}")
+    print(f"  {'Pass' if encoded == expected_encoded and decode_result == expected_decoded else 'Fail'}\n")
