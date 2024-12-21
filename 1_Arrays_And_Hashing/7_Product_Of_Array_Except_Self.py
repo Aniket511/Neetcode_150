@@ -42,6 +42,11 @@ class Solution:
         # The output array now contains the product of all elements except the current one for each index.
         return output
             
+# Time Complexity:
+# O(n) where n is the length of nums
+
+# Space Complexity:
+# O(1) since output array is excluded from the space analysis
 
 test_cases = [
     ([1, 2, 3, 4], [24, 12, 8, 6]),
