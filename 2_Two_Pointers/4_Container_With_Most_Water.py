@@ -22,26 +22,36 @@ Input: height = [1,1]
 Output: 1
 """
 
+# Solution: Two Pointers
 class Solution:
     def maxArea(self, height: list[int]) -> int:
-        # Initialize the variable to store the maximum area
+        # Step 1: Initializing Variables:
+        # Initialize the variable to keep track of the maximum area of water
         max_area = 0      
-        # Left pointer starts at the beginning of the list          
+        # Initialize a pointer 'left'  at the beginning of the list          
         left = 0         
-        # Right pointer starts at the end of the list            
-        right = len(height) - 1      
+        # Initialize another pointer at the end of the list         
+        right = len(height) - 1
+        # Step 2: Main Loop      
         # Loop until left pointer is not equal to or exceeds the right pointer
         while left < right:
-            # Calculate the area with the current left and right pointers
+            # Calculate the area of the container formed by the two lines at indices 'left' and 'right'
+            # Irs the width of the container (distance between the two pointers) multiplied by the minimum of the heights of the two lines 
             current_area = (right - left) * min(height[left], height[right])
-            # Update the maximum area found so far
+            # Step 3: Updating the maximum area
+            # Update 'max_area' to be the maximum of its current value and current_area
+            # This ensures that max_area always holds the maximum area encountered so far
             max_area = max(max_area, current_area)
-            # Move the pointer pointing to the shorter line inward
+            # Step 5: Moving pointers
+            # If the height of the line at the 'left' pointer is less than the height of the line at the 'right' pointer, 
+            # Increment the 'left' pointer, this means we're trying to find a line with greater height to potentially increase the area 
             if height[left] < height[right]:
                 left += 1
+            # Otherwise, decrement the 'right' pointer, this means we're trying to find a line with greater height on the right side to potentially increase the area
             else:
                 right -= 1        
-        # Return the maximum area found
+        # Step 6: Return the maximum area:
+        # After the loop ends, return the maximum area calculated
         return max_area
 
 # Time Complexity: 
@@ -57,7 +67,7 @@ class Solution:
 test_cases = [
     ([1, 8, 6, 2, 5, 4, 8, 3, 7], 49),
     ([1, 1], 1),
-    ([1,7,2,5,4,7,3,6], 36),
+    ([1, 7, 2, 5, 4, 7, 3, 6], 36),
     ([2, 2, 2], 4),
 ]
 
