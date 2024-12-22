@@ -19,7 +19,7 @@ Output: ["we","say",":","yes"]
 """
 
 class Solution:
-    def encode(self, strs: List[str]) -> str:
+    def encode(self, strs: list[str]) -> str:
         # If the input list is empty, return an empty string
         if not strs:
             return ""
@@ -46,7 +46,7 @@ class Solution:
         # Return the fully encoded string
         return encoded_str
 
-    def decode(self, encoded_str: str) -> List[str]:
+    def decode(self, encoded_str: str) -> list[str]:
         # If the encoded string is empty, return an empty list
         if not encoded_str:
             return []

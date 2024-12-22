@@ -1,5 +1,5 @@
 """
-Copy List with Random Pointer
+Copy list with Random Pointer
 
 Medium
 

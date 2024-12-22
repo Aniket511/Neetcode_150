@@ -19,7 +19,7 @@ Follow up: Can you solve the problem in O(1) extra space complexity? (The output
 """
 
 class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
         output = [1] * len(nums)
         
         left = 1
