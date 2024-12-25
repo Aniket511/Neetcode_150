@@ -32,41 +32,46 @@ Explanation: The only possible triplet sums up to 0.
 
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-        triplets = []  # To store the resulting triplets
-        nums.sort()  # Sorting the array to facilitate two-pointer approach
-
-        # Loop through each element, considering it as the first element of the triplet
+        # Step 1: Initialize an empty list 
+        # Create an empty list 'triplets' to store the triplets whose sum is zero
+        triplets = [] 
+        # Step 2: Sort the input array
+        # Sort the input array in an non-decreasing order to avoid duplicate triplets
+        nums.sort()  
+        # Step 3: Iterate through the list
+        # Enumerate the list to get index of the values in nums
         for idx, val in enumerate(nums):
-            # If the current value is greater than 0, break early because there can't be a sum of 0 with positive values
+            # Since we sort the array in non-decreasing order, if the first element is positive, then the remaining elements will also be positive so we break the loop
             if val > 0:
                 break
-
-            # Skip duplicates for the first element of the triplet to avoid repeating results
+            # Step 4: Skip Duplicate Elements
+            # Check if the current element is a duplicate of the previous element and skip if it is
             if idx > 0 and val == nums[idx - 1]:
                 continue
-
-            # Two pointers: one starting just after the current element, and one at the end of the list
+            # Step 5: Initialize pointers
+            # initialize pointers 'left' and 'right' to point to the elements next to the 'idx' of the current element and at the end of the array, respectively 
             left, right = idx + 1, len(nums) - 1
+            # Step 6: Two pointer approach
+            # Loop until left pointer is less than right pointer
             while left < right:
-                # Calculate the sum of the current triplet
+                # Step 7: Calculate total of current triplet
                 threeSum = val + nums[left] + nums[right]
-                
-                # If the sum is greater than 0, move the right pointer to the left to decrease the sum
+                # Step 8: Adjust pointer based on total
+                # if the total is greater than zero, then we decrement the right pointer by one
                 if threeSum > 0:
                     right -= 1
-                # If the sum is less than 0, move the left pointer to the right to increase the sum
+                # Else if the total is less than zero, then we increment the left pointer by one
                 elif threeSum < 0:
                     left += 1
-                # If the sum is exactly 0, we've found a valid triplet
+                # Else if the total sum equals zero, add the triplet values to the variable 'triplets'
                 else:
                     triplets.append([val, nums[left], nums[right]])
                     left += 1
                     right -= 1
-                    
-                    # Skip duplicate values for the 'left' pointer to avoid repeating results
+                    # Step 9: Skipping duplicates on the left
+                    # After finding a valid triplet, we skip any duplicate values on the left side to avoid duplicates 
                     while nums[left] == nums[left - 1] and left < right:
                         left += 1
-                        
         return triplets
 
 # Time Complexity:

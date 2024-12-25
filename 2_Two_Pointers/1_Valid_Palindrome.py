@@ -32,34 +32,28 @@ class Solution:
         # Initialize two pointers, left starting from the beginning of the string and 
         # right starting from the end of the string.
         left, right = 0, len(s) - 1
-
         # Iterate as long as left pointer is less than the right pointer.
         while left < right:
             # Skip over non-alphanumeric characters from the left side.
-            while left < right and not self.alphaNum(s[left]):
+            while left < right and not self.isalphaNum(s[left]):
                 left += 1  # Move the left pointer to the right.
-
             # Skip over non-alphanumeric characters from the right side.
-            while right > left and not self.alphaNum(s[right]):
+            while right > left and not self.isalphaNum(s[right]):
                 right -= 1  # Move the right pointer to the left.
-
             # Check if the characters at the left and right pointers are the same (ignoring case).
             # If they are not the same, return False because it's not a palindrome.
             if s[left].lower() != s[right].lower():
                 return False
-
             # Move the pointers towards the center of the string.
             left, right = left + 1, right - 1
-
         # If we have checked all pairs of characters and they matched, return True.
         return True
-    
-    def alphaNum(self, c):
+    def isalphaNum(self, character):
         # Helper function to check if a character is alphanumeric (i.e., a letter or a number).
         # This function returns True if the character is alphanumeric, otherwise False.
-        return (ord('A') <= ord(c) <= ord('Z') or  # Check if the character is an uppercase letter.
-                ord('a') <= ord(c) <= ord('z') or  # Check if the character is a lowercase letter.
-                ord('0') <= ord(c) <= ord('9'))   # Check if the character is a digit (0-9).
+        return (ord('A') <= ord(character) <= ord('Z') or  # Check if the character is an uppercase letter.
+                ord('a') <= ord(character) <= ord('z') or  # Check if the character is a lowercase letter.
+                ord('0') <= ord(character) <= ord('9'))   # Check if the character is a digit (0-9).
 
 # Time Complexity:
 # The algorithm runs in O(n) time where n is the length of the string s. 

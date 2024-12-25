@@ -33,12 +33,10 @@ class Solution:
         # Initialize two pointers, left starting at the beginning and right starting at the end of the list.
         left = 0
         right = len(numbers) - 1
-
         # Loop until the two pointers meet.
         while left < right:
             # Calculate the sum of the values at the two pointers.
             total = numbers[left] + numbers[right]
-
             # If the total equals the target, we have found the solution.
             if total == target:
                 # Return the indices (1-based indexing).

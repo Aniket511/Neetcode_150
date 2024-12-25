@@ -20,6 +20,8 @@ Follow up: Can you solve the problem in O(1) extra space complexity? (The output
 
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
+        # Step 1: Initialize output array
+        #
         output = [1] * len(nums)
         
         left = 1
@@ -33,3 +35,4 @@ class Solution:
             right *= nums[i]
     
         return output        
+        
