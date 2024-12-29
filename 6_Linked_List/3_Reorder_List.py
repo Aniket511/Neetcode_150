@@ -1,5 +1,5 @@
 """
-Reorder List
+Reorder list
 
 Medium
 

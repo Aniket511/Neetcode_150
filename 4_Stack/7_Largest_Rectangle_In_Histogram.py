@@ -21,7 +21,7 @@ Output: 4
 
 # Solution: Stack
 class Solution:
-    def largestRectangleArea(self, heights: List[int]) -> int:
+    def largestRectangleArea(self, heights: list[int]) -> int:
         stack = [-1]
         max_area = 0
 

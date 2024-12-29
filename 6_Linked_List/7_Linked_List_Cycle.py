@@ -1,5 +1,5 @@
 """
-Linked List Cycle
+Linked list Cycle
 
 Easy
 

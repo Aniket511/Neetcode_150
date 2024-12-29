@@ -58,15 +58,16 @@ class Solution1:
                     continue
                 
                 # Check if the current number already exists in the current row, column, or 3x3 subgrid.
-                if (board[r][c] in rows[r]  # Check the row 'r'
+                elif (board[r][c] in rows[r]  # Check the row 'r'
                     or board[r][c] in cols[c]  # Check the column 'c'
                     or board[r][c] in squares[(r // 3, c // 3)]):  # Check the 3x3 subgrid
                     return False  # If the number exists in any of these, the board is invalid.
-
-                # If no duplicates are found, add the current number to the respective sets
-                cols[c].add(board[r][c])  # Add the number to the column 'c'
-                rows[r].add(board[r][c])  # Add the number to the row 'r'
-                squares[(r // 3, c // 3)].add(board[r][c])  # Add the number to the 3x3 subgrid
+                
+                else:
+                    # If no duplicates are found, add the current number to the respective sets
+                    cols[c].add(board[r][c])  # Add the number to the column 'c'
+                    rows[r].add(board[r][c])  # Add the number to the row 'r'
+                    squares[(r // 3, c // 3)].add(board[r][c])  # Add the number to the 3x3 subgrid
 
         return True  # If no invalid conditions are found, the Sudoku board is valid.
 

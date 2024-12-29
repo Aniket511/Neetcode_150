@@ -1,5 +1,5 @@
 """
-Remove Nth Node From End of List
+Remove Nth Node From End of list
 
 Medium
 
