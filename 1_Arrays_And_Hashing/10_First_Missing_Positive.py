@@ -27,18 +27,38 @@ Explanation: The smallest positive integer 1 is missing.
 class Solution:
     def firstMissingPositive(self, nums: list[int]) -> int:
         # Step 1: Filter out non-positive numbers since non-positive numbers are irrelevant to us for this question
+        # The algorithm starts by creating a new list that only includes positive numbers from the original nums list. 
+        # Non-positive numbers (i.e., zero or negative numbers) are irrelevant to finding the smallest missing positive integer and are therefore removed.
         nums = [number for number in nums if number > 0]
-        # Step 2: Mark the presence of NUmbers
+        # Step 2: Mark the presence of numbers
         for number in nums:
+            # The algorithm calculates the index idx by taking the absolute value of 'number' and subtracting 1. This converts the value 'number' to a zero-based index
             idx = abs(number) - 1
+            # If idx is within the bounds of the list (idx < len(nums)) and the value at nums[idx] is positive, 
+            # the algorithm marks the presence of the number by negating the value at nums[idx]
             if idx < len(nums) and nums[idx] > 0:
+                # By negating the values, the algorithm effectively marks that a number corresponding to this index exists in the array, without using extra space
                 nums[idx] *= -1
-        
-        for i in range(len(nums)):
-            if nums[i] > 0:
-                return i + 1
-        
+        # Step 3: Identify the first missing positive
+        # Iterating through the list to checks each element in the list from left to right
+        for idx in range(len(nums)):
+            # If an element is found to be positive, it indicates that the index i + 1 is the first missing positive integer because this index was not marked in the previous step.
+            if nums[idx] > 0:
+                return idx + 1
+        # Step 4: Return the next positive integer
+        # If the loop completes without finding a missing positive integer, it means all integers from 1 to len(nums) are present in the array. 
+        # Therefore, the first missing positive integer would be len(nums) + 1
         return len(nums) + 1
+
+# Time Complexity:
+# The time complexity of the provided algorithm is O(n), where n is the number of elements in the input list `nums`. 
+# This is because the algorithm processes the list in a few linear passes: first to filter out non-positive numbers, then to mark the presence of positive numbers, 
+# and finally to identify the first missing positive integer. Each of these operations involves iterating through the list, resulting in a total linear time complexity.
+
+# Space Complexity:
+# The space complexity is O(1) in terms of additional space used, 
+# as the algorithm modifies the input list in place and does not utilize any significant extra space that scales with the input size. 
+# The only space used is for a few variables, which is constant regardless of the input size. Thus, the algorithm is efficient in both time and space.
 
 test_cases = [
     ([1, 2, 3, 4], 5),
