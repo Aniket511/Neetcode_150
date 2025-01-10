@@ -53,7 +53,10 @@ test_cases = [
 ]
 
 solution = Solution()  # Corrected instantiation of Solution class
-for i, (nums, target) in enumerate(test_cases):
+for idx, (nums, target) in enumerate(test_cases):
     result = solution.twoSum(nums, target)  # Calling the method with correct arguments
-    expected = sorted([nums.index(target - nums[i]), i])  # Getting the expected result
-    print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")
+    expected = sorted([nums.index(target - nums[idx]), idx])  # Getting the expected result
+    if result == expected:
+        print(f"Test Case {idx + 1}: Pass")
+    else:
+        print(f"Test Case {idx + 1}: Fail (Expected {expected}, Got {result})") 

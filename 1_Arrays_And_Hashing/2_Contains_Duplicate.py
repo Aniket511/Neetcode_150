@@ -1,6 +1,4 @@
 """
-Microsoft 
-
 Contains Duplicate
 
 Easy
@@ -44,11 +42,11 @@ class Solution:
         # Step 4: Return False if all numbers in the list are distinct
         return False
 
-# Time Complexity:
-# O(n) because we need to iterate through the entire list once, where `n` is the length of the list.
+# Time Complexity: O(n)
+# Because we need to iterate through the entire list once, where `n` is the length of the list.
 
-# Space Complexity:
-# O(n) because, in the worst case, we may need to store all the values of the list in the set.
+# Space Complexity: O(n)
+# Because, in the worst case, we may need to store all the values of the list in the set.
 
 # Test Cases:
 test_cases = [
@@ -61,6 +59,9 @@ test_cases = [
 ]
 
 solution = Solution()
-for i, (nums, expected) in enumerate(test_cases):
+for idx, (nums, expected) in enumerate(test_cases):
     result = solution.containsDuplicate(nums)
-    print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")
+    if result == expected:
+        print(f"Test Case {idx + 1}: Pass")
+    else:
+        print(f"Test Case {idx + 1}: Fail (Expected {expected}, Got {result})") 

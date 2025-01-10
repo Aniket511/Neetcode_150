@@ -25,7 +25,6 @@ Input: strs = ["a"]
 Output: [["a"]]
 """
 
-# Solution 1: Hashtable
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
         # Dictionary to hold the group of words (anagrams) based on their letter frequency count
@@ -51,7 +50,6 @@ class Solution:
         
         # Return the values of the dictionary (groups of anagrams)
         return list(group.values())
-
 
 # Time Complexity:
 # O(m + n) where m is the length of longest string and n is the number of string
