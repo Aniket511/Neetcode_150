@@ -75,7 +75,7 @@ class Solution:
                 current_list, num_of_letters = [], 0
             
             # add current word to the list and add length to char count
-            current_list.append(word)
+            current_list += [word]
             num_of_letters += len(word)
         
         # form last line by join with space and left justify to maxWidth using ljust (python method)
@@ -83,6 +83,7 @@ class Solution:
         result.append(" ".join(current_list).ljust(maxWidth))
         
         return result
+
 
 # Test Cases
 test_cases=[

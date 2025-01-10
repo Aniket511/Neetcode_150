@@ -36,7 +36,7 @@ class Solution1:
             # Check if 'character' is not in the 'frequency' dictionary or if its count is already 0.
             # e.g. ['aab'] and ['abb'] 
             # If either condition is met, return False
-            if character not in frequency or frequency[character] == 0:
+            if character not in frequency.keys() or frequency[character] == 0:
                 return False
             # If character is in frequency then decrement the count of character by 1
             frequency[character] -= 1
@@ -51,7 +51,7 @@ class Solution1:
 # the overall complexity remains linear with respect to the length of the strings 
 
 # Space Complexity:
-# The space complexity of the function is O(1) in terms of the character set size. 
+# The space complexity of the function is O(k) in terms of the character set size. 
 # This is because the frequency dictionary will store counts for a limited number of characters (e.g., 26 lowercase letters, 26 uppercase letters, or 10 digits), 
 # which is a constant size regardless of the input string length. 
 # Therefore, while the space used by the frequency dictionary can be considered O(1) in terms of the character set, 
@@ -66,8 +66,11 @@ test_cases1 = [
 ]
 
 solution1 = Solution1()
-for i, (strs, expected) in enumerate(test_cases1):
+for idx, (strs, expected) in enumerate(test_cases1):
     # Unpack the list into two separate strings
     s, t = strs
     result = solution1.isAnagram1(s, t)
-    print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")
+    if result == expected:
+        print(f"Test Case {idx + 1}: Pass")
+    else:
+        print(f"Test Case {idx + 1}: Fail (Expected {expected}, Got {result})") 

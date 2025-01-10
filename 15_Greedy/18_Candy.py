@@ -62,20 +62,59 @@ class Solution:
             total_candies -= min(current_peak_candies, current_valley_candies)
 
         # Step 7: Return the total candies after processing all children.
-        return total_candies
-
-# Test Cases
+        return total_candies 
 test_cases = [
     ([1, 2, 3, 4, 1], 11),
     ([4, 3, 2, 1, 2], 12),
-    ([_ for _ in range(-100,101)] + [-23], 20302),
+    ([_ for _ in range(2000)], 2001000),
     ([2], 1),
-    ([_ for _ in range(-100, 101)], 20302),
+    ([_ for _ in range(1000)], 500500),
     ([2, 2, 2, 2, 2], 5),
-    ([1,1,1,3,3,4,3,2,4,2], 15)
+    ([1,1,1,3,3,4,3,2,4,2], 15),
+    ([1,0,2], 5)
+
 ]
 
 solution = Solution()
 for idx, (nums, expected) in enumerate(test_cases):
     result = solution.candy(nums)
-    print(f"Test Case {idx + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")     
+    print(f"Test Case {idx + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")  
+class Solution:
+    def candy(self, ratings):
+        candies = 1
+        idx = 1
+        while idx < len(ratings):
+            if ratings[idx] == ratings[idx - 1]:
+                idx += 1
+                candies += 1
+                continue
+            peak = 1
+            while idx < len(ratings) and ratings[idx] > ratings[idx - 1]:
+                peak += 1
+                candies += peak
+                idx += 1
+            valley = 1
+            while idx < len(ratings) and ratings[idx] < ratings[idx - 1]:
+                candies += valley
+                valley += 1
+                idx += 1
+            if valley > peak:
+                candies += (valley - peak)
+        return candies
+# Test Cases
+test_cases = [
+    ([1, 2, 3, 4, 1], 11),
+    ([4, 3, 2, 1, 2], 12),
+    ([_ for _ in range(2000)], 2001000),
+    ([2], 1),
+    ([_ for _ in range(1000)], 500500),
+    ([2, 2, 2, 2, 2], 5),
+    ([1,1,1,3,3,4,3,2,4,2], 15),
+    ([1,0,2], 5)
+
+]
+
+solution = Solution()
+for idx, (nums, expected) in enumerate(test_cases):
+    result = solution.candy(nums)
+    print(f"Test Case {idx + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})") 

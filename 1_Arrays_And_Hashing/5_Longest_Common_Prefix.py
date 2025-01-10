@@ -19,24 +19,41 @@ Explanation: There is no common prefix among the input strings.
 # Solution 1: using Enumerate
 class Solution:
     def longestCommonPrefix(self, strs):
+        # If the input list is empty, there is no common prefix
         if not strs:
             return ""
+        
+        # Iterate over each character and its index in the first string
         for idx, letter in enumerate(strs[0]):
+            # Check the same position (idx) in all other words in the list
             for word in strs:
+                # If we reach the end of a word or the character does not match:
                 if idx == len(word) or word[idx] != letter:
+                    # Return the common prefix found so far
                     return word[:idx]
+        
+        # If we complete the loop without finding a mismatch, the first string itself is the prefix
         return strs[0]
 
 # Solution 2: Using range 
 class Solution:
     def longestCommonPrefix(self, strs):
+        # If the input list is empty, there is no common prefix
         if not strs:
             return ""
+        
+        # Iterate over the indices of the first string
         for idx in range(len(strs[0])):
+            # Get the character at the current index from the first string
             character = strs[0][idx]
+            # Compare this character with the character at the same index in all other words
             for word in strs:
+                # If we reach the end of a word or characters do not match:
                 if idx == len(word) or word[idx] != character:
+                    # Return the common prefix found so far
                     return word[:idx]
+        
+        # If we complete the loop without finding a mismatch, the first string itself is the prefix
         return strs[0]
 
 # Time Complexity:

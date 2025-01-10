@@ -3,9 +3,11 @@ Remove Element
 
 Easy
 
-Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
+Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. 
+The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
 Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
-    Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.
+    Change the array nums such that the first k elements of nums contain the elements which are not equal to val. 
+    The remaining elements of nums are not important as well as the size of nums.
     Return k.
 
 Custom Judge:
@@ -39,13 +41,23 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 # Solution:
 class Solution:
     def removeElement(self, nums: list[int], val: int) -> int:
-        k = 0
-        for idx in range(len(nums)):
-            if nums[idx] != val:
-                nums[k] = nums[idx]
-                k += 1
-        return k
+        # Initialize a pointer `i` to track the position of the next element
+        # that is not equal to `val`.
+        i = 0
 
+        # Iterate over the array `nums` using the `range` function.
+        for idx in range(0, len(nums)):
+            # If the current element is not equal to `val`:
+            if nums[idx] != val:
+                # Move the element to the position pointed by `i`.
+                nums[i] = nums[idx]
+                # Increment `i` to move the pointer to the next position.
+                i += 1
+        
+        # Return the value of `i`, which represents the new length of the array.
+        return i 
+
+# Test Cases:
 test_cases = [
     ([1, 2, 3, 4], 2, 3),
     ([4, 3, 2, 1, 2], 2, 3),

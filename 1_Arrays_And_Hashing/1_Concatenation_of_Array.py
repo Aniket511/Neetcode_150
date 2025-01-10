@@ -3,7 +3,8 @@ Concatenation of Array
 
 Easy
 
-Given an integer array nums of length n, you want to create an array ans of length 2n where ans[i] == nums[i] and ans[i + n] == nums[i] for 0 <= i < n (0-indexed).
+Given an integer array nums of length n, you want to create an array ans of length 2n where 
+ans[i] == nums[i] and ans[i + n] == nums[i] for 0 <= i < n (0-indexed).
 Specifically, ans is the concatenation of two nums arrays.
 Return the array ans.
 
@@ -57,4 +58,7 @@ test_cases = [
 solution = Solution()
 for idx, (nums, expected) in enumerate(test_cases):
     result = solution.getConcatenation(nums)
-    print(f"Test Case {idx + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")           
+    if result == expected:
+        print(f"Test Case {idx + 1}: Pass")
+    else:
+        print(f"Test Case {idx + 1}: Fail (Expected {expected}, Got {result})")          

@@ -59,6 +59,9 @@ test_cases = [
 ]
 
 solution = Solution()
-for i, (nums, expected) in enumerate(test_cases):
+for idx, (nums, expected) in enumerate(test_cases):
     result = solution.containsDuplicate(nums)
-    print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")
+    if result == expected:
+        print(f"Test Case {idx + 1}: Pass")
+    else:
+        print(f"Test Case {idx + 1}: Fail (Expected {expected}, Got {result})") 
