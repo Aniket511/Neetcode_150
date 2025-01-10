@@ -59,11 +59,3 @@ solution = Solution()
 for i, (nums, expected) in enumerate(test_cases):
     result = solution.singleNumber(nums)
     print(f"Test Case {i + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")
-
-# Output
-# Test Case 1: Pass (Expected 31, Got 31)
-# Test Case 2: Pass (Expected 4, Got 4)
-# Test Case 3: Pass (Expected -2, Got -2)
-# Test Case 4: Pass (Expected 1, Got 1)
-# Test Case 5: Pass (Expected 100, Got 100)
-# Test Case 6: Pass (Expected 0, Got 0)
