@@ -22,26 +22,41 @@ Output: 1
 Explanation: The smallest positive integer 1 is missing.
 """
 
+# Two Pointer
 class Solution:
     def firstMissingPositive(self, nums: list[int]) -> int:
-        n = len(nums)
-        i = 0
-        while i < n:
-            if nums[i] <= 0 or nums[i] > n:
-                i += 1
-                continue
-                
-            index = nums[i] - 1
-            if nums[i] != nums[index]:
-                nums[i], nums[index] = nums[index], nums[i]
+        left = 0
+        right = len(nums)
+        while left < right:
+            if nums[left] == left + 1:
+                left += 1
+            elif (
+                nums[left] > right or
+                nums[left] <= left or
+                nums[nums[left] - 1] == nums[left]
+            ):
+                right -= 1
+                nums[left], nums[right] = nums[right], nums[left]
             else:
-                i += 1
+                nums[nums[left] - 1], nums[left] = nums[left], nums[nums[left] - 1]
 
-        for i in range(n):
-            if nums[i] != i + 1:
-                return i + 1
+        return left + 1
 
-        return n + 1
+# Array
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        idx = 0
+        while idx < len(nums):
+            idx_2 = nums[idx] - 1
+            if nums[idx] < len(nums) and nums[idx] > 0 and nums[idx] != nums[idx_2]:
+                nums[idx], nums[idx_2] = nums[idx_2], nums[idx]
+            else:
+                idx += 1
+        for idx in range(len(nums)):
+            if nums[idx] != idx + 1:
+                return idx + 1
+        return len(nums) + 1
+
 # Test Cases
 test_cases = [
     ([1, 2, 3, 4], 5),

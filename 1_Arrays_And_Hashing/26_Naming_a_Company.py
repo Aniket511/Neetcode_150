@@ -65,20 +65,18 @@ class Solution:
         # Step 6: Return the total number of valid distinct name combinations
         return total_distinct_name_combinations
 
-# Time Complexity: O(n)
-#     1. Grouping the suffixes:
-#       The first loop iterates over all n words in the ideas list, and for each word, we perform constant time operations (calculating the first letter and adding the suffix). 
-#       So, this step has a time complexity of O(n).
-#     2. Checking pairs of groups:
-#       The nested loop iterates over all pairs of groups of letters, and for each pair, we compute the intersection of the suffix sets. There are at most 26 groups (one for each letter), so there are O(26^2) pairs to check. The size of the sets determines the time complexity for each pair. In the worst case, each set can have up to n suffixes, so this step is O(n * 26^2).
-#       Thus, the overall time complexity is O(n * 26^2), where n is the number of words. 
-#       Since 26^2 is a constant (only 676), this can be approximated as O(n) in practical terms.
+# Time Complexity:
+# The time complexity of the given solution is O(N + 26^2), where N is the number of ideas in the input list. 
+# The O(N) term comes from the initial loop that processes each idea to populate the `suffixes` list, which consists of sets for each letter of the alphabet. 
+# The O(26^2) term arises from the nested loops that compare each pair of initials (i, j) from 0 to 25. 
+# Since there are a constant number of initials (26 letters), this part can be considered O(1) in terms of growth, making the overall time complexity effectively O(N).
 
-# Space Complexity: O(n)
-#     Suffix groups: 
-#       We store a set of suffixes for each letter in the alphabet, resulting in O(n) space, where n is the total number of suffixes. 
-#       The space complexity is dominated by the storage of suffix sets.
-# Thus, the space complexity is O(n).
+# Space Complexity:
+# The space complexity is O(26 * M), where M is the average length of the suffixes stored in the sets. 
+# This is because we are using a list of sets to store the suffixes for each of the 26 initials. 
+# In the worst case, if all ideas have unique suffixes, the space used could be proportional to the total number of suffixes across all initials, 
+# but since there are only 26 sets, the space complexity is primarily determined by the number of unique suffixes stored. 
+# Thus, the space complexity can be considered O(M) for practical purposes, where M is the total number of unique suffixes.
 
 # Test Cases
 test_cases = [

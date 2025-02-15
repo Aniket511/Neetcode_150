@@ -34,3 +34,30 @@ Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 = 17 + 5
 = 22
 """
+
+class Solution:
+    def evalRPN(self, tokens: list[str]) -> int:
+        stack = []
+        for token in tokens:
+            if token == "+":
+                stack.append(stack.pop(-2) + stack.pop())
+            elif token == "-":
+                stack.append(stack.pop(-2) - stack.pop())
+            elif token == "*":
+                stack.append(stack.pop(-2) * stack.pop())
+            elif token == "/":
+                stack.append(int(stack.pop(-2) / stack.pop()))
+            else:
+                stack.append(int(token))
+        return stack[0]
+
+test_cases = [
+    [["1","2","+","3","*","4","-"], 5]
+]
+solution = Solution()
+for idx, (tokens, expected) in enumerate(test_cases):
+    result = solution.evalRPN(tokens)
+    if result == expected:
+        print(f"Test Case {idx + 1} Passed")
+    else:
+        print(f"Test Case {idx + 1} Failed. Expected: {expected}, Got: {result}")

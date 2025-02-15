@@ -44,10 +44,6 @@ class Solution:
                 current_peak_candies += 1
                 total_candies += current_peak_candies
                 idx += 1
-            
-            # If we reach the end of the list during the ascending slope, return the total candies.
-            if idx == len(ratings):
-                return total_candies
 
             # Step 5: Handle a "descending slope" (ratings decreasing):
             # Start counting candies for children with decreasing ratings.
@@ -79,6 +75,7 @@ solution = Solution()
 for idx, (nums, expected) in enumerate(test_cases):
     result = solution.candy(nums)
     print(f"Test Case {idx + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")  
+
 class Solution:
     def candy(self, ratings):
         candies = 1

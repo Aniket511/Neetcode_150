@@ -26,23 +26,31 @@ Input: nums = [1], k = 1
 Output: [1]
 """
 
-# Solution: Two Pointer
-class Solution:
-    def trap(self, height: list[int]) -> int:
-        left = 0
-        right = len(height) - 1
-        left_max = height[left]
-        right_max = height[right]
-        water = 0
+from collections import deque
 
-        while left < right:
-            if left_max < right_max:
-                left += 1
-                left_max = max(left_max, height[left])
-                water += left_max - height[left]
-            else:
-                right -= 1
-                right_max = max(right_max, height[right])
-                water += right_max - height[right]
-        
-        return water
+class Solution:
+    def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
+        max_values = []
+        queue = deque()
+        for idx, val in enumerate(nums):
+            while queue and val > queue[-1]:
+                queue.pop()
+            queue.append(val)
+            if idx >= k and queue[0] == nums[idx - k]:
+                queue.popleft()
+            if idx >= k - 1:
+                max_values.append(queue[0])
+        return max_values
+
+test_cases = [
+    ([3,5,2,1,4,5,6,4,3,2,4,3,2,3,4,5,6,7,5,4], 3, [5, 5, 4, 5, 6, 6, 6, 4, 4, 4, 4, 3, 4, 5, 6, 7, 7, 7])
+]
+
+solution = Solution()
+
+for idx, (nums, k, expected) in enumerate(test_cases):
+    result = solution.maxSlidingWindow(nums, k)
+    if result == expected:
+        print(f"Test Case {idx + 1} Passed")
+    else:
+        print(f"Test Case {idx + 1} Failed, Expected: {expected}, Got: {result}")
