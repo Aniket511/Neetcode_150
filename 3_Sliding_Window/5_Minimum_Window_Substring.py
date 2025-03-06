@@ -27,58 +27,45 @@ Since the largest window of s only has one 'a', return empty string.
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        # Get the length of t. If t is longer than s or empty, there's no valid window.
-        target_length = len(t)
-        if target_length > len(s) or target_length == 0:
+        if t == "" or len(t) > len(s):
             return ""
-        
-        # Build a frequency dictionary for characters in t.
-        target_char_count = {}
-        for char in t:
-            target_char_count[char] = target_char_count.get(char, 0) + 1
-        
-        # Initialize the smallest window (start, end) with an impossible high value.
-        smallest_window = (0, len(s) + 1)
-        window_start = 0  # Left pointer for the sliding window.
-        required_chars = target_length  # Total number of characters we need to match t.
-        
-        # Iterate over s with window_end as the right pointer.
-        for window_end, current_char in enumerate(s):
-            # If current_char is part of t, update its count.
-            if current_char in target_char_count:
-                # Only decrement required_chars if the count is still positive.
-                if target_char_count[current_char] > 0:
-                    required_chars -= 1
-                # Decrement the count for current_char in our frequency map.
-                target_char_count[current_char] -= 1
+        count_S, count_T = {}, {}
+        for letter in t:
+            count_T[letter] = count_T.get(letter, 0) + 1
+        have, need = 0, len(count_T)
+        result, result_length = [-1, -1], float("infinity")
+        left = 0
+        for right, letter in enumerate(s):
+            count_S[letter] = count_S.get(letter, 0) + 1
+            if letter in count_T and count_S[letter] == count_T[letter]:
+                have += 1
+                while have == need:
+                    if (right - left + 1) < result_length:
+                        result = [left, right]
+                        result_length = (right - left + 1)
+                    count_S[s[left]] -= 1
+                    if s[left] in count_T and count_S[s[left]] < count_T[s[left]]:
+                        have -= 1
+                    left += 1
+        left, right = result
+        return s[left : right + 1] if result_length != float("infinity") else ""
             
-            # When all required characters are in the window:
-            if required_chars == 0:
-                # Try to shrink the window from the left.
-                while True:
-                    start_char = s[window_start]
-                    # If start_char isn't part of t, move the left pointer.
-                    if start_char not in target_char_count:
-                        window_start += 1
-                        continue
-                    # If removing start_char would break the valid window, stop shrinking.
-                    if target_char_count[start_char] == 0:
-                        break
-                    # Otherwise, increment the count back (since it's an extra occurrence)
-                    target_char_count[start_char] += 1
-                    window_start += 1
-                
-                # Update the smallest window if the current window is smaller.
-                if window_end - window_start + 1 < smallest_window[1] - smallest_window[0]:
-                    smallest_window = (window_start, window_end + 1)
-                
-                # Prepare to search for a new window by moving window_start:
-                # Increase the count of the character at window_start, since we will remove it.
-                target_char_count[s[window_start]] += 1
-                # This character is now missing from our window, so we need one more.
-                required_chars += 1
-                # Move the left pointer to effectively remove this character.
-                window_start += 1
-        
-        # If smallest_window was updated, return the corresponding substring; otherwise, return "".
-        return "" if smallest_window[1] > len(s) else s[smallest_window[0]:smallest_window[1]]
+test_cases = [
+    ("CCCCCCBBBBBBCA", "ABC", "BCA"),
+    ("ABXCDFERHGINFJLAMZNIFODHWQWROPWIEGOXHNCZKLB", "AX", "ABX"),
+    ("", "", ""),
+    ("VFS", "", ""),
+    ("", "ASD", ""),
+    ("ABCDFERHGINFJLAMZNIFODHWQWRAOPWIEGOXHNCZKL", "AX", "AOPWIEGOX"),
+    ("ABCDFERHGXINFJLAMZNIFODHWQWROPWIEGOXHNCZKL", "AX", "XINFJLA"),
+    ("ADOBECODEBANC", "ABC", "BANC"),
+    ("a", "b", ""),
+]
+solution = Solution()
+
+for idx, (s, t, expected) in enumerate(test_cases):
+    output = solution.minWindow(s, t)
+    if output == expected:
+        print(f"Test Case {idx + 1} Passed")
+    else:
+        print(f"Test Case {idx + 1} Failed, Expected: {expected}, Got: {output}")

@@ -24,5 +24,35 @@ Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.
 Example 3:
 Input: nums = [11,13,15,17]
 Output: 11
-Explanation: The original array was [11,13,15,17] and it was rotated 4 times. 
+Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
 """
+
+# Solution:
+class Solution:
+    def findMin(self, nums: list[int]) -> int:
+        result = float('inf')
+        left, right = 0, len(nums) - 1
+
+        while left <= right:
+            if nums[left] < nums[right]:
+                result = min(result, nums[left])
+            
+            m = (left + right) // 2
+            result = min(result, nums[m])
+            if nums[m] >= nums[left]:
+                left = m + 1
+            else:
+                right = m - 1
+        return result
+
+test_cases = [
+    ([6,7,8,9,10,11,12,13,14,15,16,17,1,2,3,4,5], 1),
+    ([16,17,18,19,10,11,12,13,14,15], 10),
+    ([216,217,218,219,220,111,112,113,114,115], 111),
+    ([-9,-8,-7,-6,-5,-4,-3,-2,-1,-10,-11,-12,-13], -10)
+]
+solution = Solution()
+
+for idx, (nums, expected) in enumerate(test_cases):
+    output = solution.findMin(nums)
+    print(f"Test Case {idx + 1}: {'Pass' if output == expected else 'Fail'} (Expected {expected}, Got {output})")

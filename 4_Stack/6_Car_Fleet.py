@@ -32,3 +32,32 @@ Explanation:
 The cars starting at 0 (speed 4) and 2 (speed 2) become a fleet, meeting each other at 4. The car starting at 4 (speed 1) travels to 5.
     Then, the fleet at 4 (speed 2) and the car at position 5 (speed 1) become one fleet, meeting each other at 6. The fleet moves at speed 1 until it reaches target.
 """
+
+# Solution
+
+class Solution:
+    def carFleet(self, target, position, speed):
+        cars = list(zip(position, speed))
+        cars.sort(reverse = True, key = lambda x : x[0])
+        fleet = max_time = 0
+        for pos, spd in cars:
+            current_time = (target - pos) / spd
+            if current_time > max_time:
+                max_time = current_time
+                fleet += 1
+        return fleet
+
+test_case = [
+    (12, [5,4,3,2,1,6,8,7,9], [5,4,7,1,9,8,6,3,2], 4),
+    (10, [1,3,2,4,3,2,1], [4,3,2,5,6,1,3], 4),
+    (12, [10,8,0,5,3], [2,4,1,1,3], 3),
+    (100, [4], [4], 1),
+    (100, [0, 2, 4], [4, 2, 1], 1),
+    (100, [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], 9)
+]
+
+solution = Solution()
+
+for idx, (target, position, speed, expected) in enumerate(test_case):
+    result = solution.carFleet(target, position, speed)
+    print(f"Test Case {idx + 1}: {'Pass' if result == expected else 'Fail'} (Expected {expected}, Got {result})")  

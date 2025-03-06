@@ -44,7 +44,7 @@ class Solution:
 
 # Array
 class Solution:
-    def firstMissingPositive(self, nums: List[int]) -> int:
+    def firstMissingPositive(self, nums: list[int]) -> int:
         idx = 0
         while idx < len(nums):
             idx_2 = nums[idx] - 1
